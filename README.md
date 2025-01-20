@@ -30,3 +30,5 @@ A aplicação solicita permissão para acessar sua localização ou permite que 
 
 7. Licença
 Não é necessário licença para utilização desse sistema
+
+Criado por [Rafael Ponte Gutierres](https://github.com/rafaelgutierres049).
