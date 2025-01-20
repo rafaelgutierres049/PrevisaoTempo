@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">       
+</head>
+<body>
+    <div class="container" style="justify-content: center;">
+        {% if not weather_data %}
+        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <!-- Formulário para buscar o clima -->
+            <form method="POST" style="padding: 10px; background-color: white; border-radius: 10px; width: 40%; justify-self: center;">
+                <h1>Previsão do Tempo</h1>
+                <input type="text" name="city_name" placeholder="Digite o nome da cidade" required><br>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        {% else %}
+        <!-- Exibição das informações de clima -->
+        <div class="weather-info">
+            
+            <div class="top-box {{ background_class }}" style="box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(0, 0, 0, 0.1); border: 1px solid white;border-radius: 8px">
+                <h2>{{ weather_data.cidade }}</h2>
+                <p class="temperature">{{ weather_data.temperatura }}°C</p>
+                <p class="min-max">Mínima: {{ weather_data.minima }}°C | Máxima: {{ weather_data.maxima }}°C</p>
+            </div>
+
+            <div class="bottom-boxes">
+                <div class="left-box">
+                    <p><strong>Umidade:</strong> {{ weather_data.umidade }}%</p>
+                    <p><strong>Condição:</strong> {{ weather_data.condicao }}</p>
+                </div>
+                
+                <div class="right-box">
+                    <div class="cloud">
+                        <div class="circle circle-top"></div>
+                        <div class="circle circle-left"></div>
+                        <div class="circle circle-right"></div>
+                        <p><strong>Nuvens:</strong> {{ weather_data.nuvens }}%</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <form method="GET">
+            <button type="submit">Nova Busca</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>
